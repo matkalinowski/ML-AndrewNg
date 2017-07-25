@@ -1,6 +1,3 @@
-import numpy as np
-
-
 def getVocabList():
 
     """reads the fixed vocabulary list in vocab.txt
