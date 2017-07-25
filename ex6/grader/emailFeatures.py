@@ -1,5 +1,5 @@
 import numpy as np
-
+import logging
 
 def emailFeatures(word_indices):
     """takes in a word_indices vector and
@@ -49,7 +49,11 @@ def emailFeatures(word_indices):
 #
 #
 
-
+    for index in word_indices:
+        try:
+            x[int(index)] = 1
+        except IndexError:
+            continue
 # =========================================================================
 
     return x
