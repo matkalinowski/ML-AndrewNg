@@ -1,6 +1,10 @@
 import numpy as np
-import sklearn.svm
+import pandas as pd
+from sklearn import svm
 
+def get_best_acc(err):
+    best = err.iloc[err[2].argmax()]
+    return best[0], best[1]
 
 def dataset3Params(X, y, Xval, yval):
     """returns your choice of C and sigma. You should complete
@@ -9,8 +13,6 @@ def dataset3Params(X, y, Xval, yval):
     """
 
 # You need to return the following variables correctly.
-    C = 1
-    sigma = 0.3
 
 # ====================== YOUR CODE HERE ======================
 # Instructions: Fill in this function to return the optimal C and sigma
@@ -23,7 +25,15 @@ def dataset3Params(X, y, Xval, yval):
 #  Note: You can compute the prediction error using 
 #        mean(double(predictions ~= yval))
 #
-
+    c_list = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30]
+    sig_list = c_list
+    err = []
+    for c_val in c_list:
+        for sig_val in sig_list:
+            gamma = 1.0 / (2.0 * sig_val ** 2)
+            clf = svm.SVC(C=c_val, kernel='rbf', gamma=gamma, max_iter=200).fit(X, y)
+            e = clf.score(Xval, yval)
+            err.append([c_val, sig_val, e])
+    return get_best_acc(pd.DataFrame(err))
 
 # =========================================================================
-    return C, sigma
