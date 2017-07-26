@@ -1,5 +1,4 @@
-import numpy as np
-
+import pandas as pd
 
 def computeCentroids(X, idx, K):
     """returns the new centroids by
@@ -26,7 +25,14 @@ def computeCentroids(X, idx, K):
 #
 # Note: You can use a for-loop over the centroids to compute this.
 # 
-
+    df = pd.DataFrame(X)
+    df['centroid'] = idx
+    for centroid in sorted(df.centroid.unique()):
+        cent_df = df[df.centroid == centroid]
+        means = []
+        for col in df.iloc[:, 0:-1]:
+            means.append(cent_df[col].mean())
+        centroids.append(means)
 
 # =============================================================
 

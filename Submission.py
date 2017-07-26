@@ -14,8 +14,8 @@ class Submission():
         self.__srcs = srcs
         self.__output = output
         self.__submit_url = 'https://www-origin.coursera.org/api/onDemandProgrammingImmediateFormSubmissions.v1'
-        self.__login = 'matkal93@gmail.com'
-        self.__password = 'yAFfxFbBoNHfCRf9'
+        self.__login = None
+        self.__password = None
 
     def submit(self):
         print('==\n== Submitting Solutions | Programming Exercise %s\n==' % self.__homework)

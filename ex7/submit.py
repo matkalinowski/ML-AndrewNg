@@ -17,9 +17,9 @@ part_names = [
 srcs = [
   'findClosestCentroids.py',
   'computeCentroids.py',
-  'pca.py',
-  'projectData.py',
-  'recoverData'
+  # 'pca.py',
+  # 'projectData.py',
+  # 'recoverData'
   ]
 
 
