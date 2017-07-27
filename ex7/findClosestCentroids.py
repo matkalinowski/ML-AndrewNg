@@ -26,5 +26,5 @@ def findClosestCentroids(X, centroids):
 
 # =============================================================
 
-    return idx
+    return idx.astype('int')
 
