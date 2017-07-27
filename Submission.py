@@ -14,8 +14,8 @@ class Submission():
         self.__srcs = srcs
         self.__output = output
         self.__submit_url = 'https://www-origin.coursera.org/api/onDemandProgrammingImmediateFormSubmissions.v1'
-        self.__login = None
-        self.__password = None
+        self.__login = 'matkal93@gmail.com'
+        self.__password = '0nHm8bdlRR18rNFm'
 
     def submit(self):
         print('==\n== Submitting Solutions | Programming Exercise %s\n==' % self.__homework)
@@ -43,7 +43,7 @@ class Submission():
             print('== %43s | %9s | %-s' % (self.__part_names[int(part) - 1], score, partFeedback))
 
         evaluation = response['evaluation']
-    
+
 
         totalScore = '%d / %d' % (evaluation['score'], evaluation['maxScore'])
         print('==                                   --------------------------------')

@@ -1,6 +1,6 @@
-from computeCentroids import computeCentroids
-from plotProgresskMeans import plotProgresskMeans
-from findClosestCentroids import findClosestCentroids
+from solutions.ex7.computeCentroids import computeCentroids
+from solutions.ex7.plotProgresskMeans import plotProgresskMeans
+from solutions.ex7.findClosestCentroids import findClosestCentroids
 import matplotlib.pyplot as plt
 import numpy as np
 import itertools

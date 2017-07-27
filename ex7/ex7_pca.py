@@ -20,10 +20,9 @@
 from matplotlib import use
 use('TkAgg')
 import numpy as np
-import scipy.io
 import scipy.misc
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
+import scipy.io
 
 from solutions.ex7.featureNormalize import featureNormalize
 from solutions.ex7.pca import pca
@@ -32,8 +31,7 @@ from solutions.ex7.recoverData import recoverData
 from solutions.ex7.kMeansInitCentroids import kMeansInitCentroids
 from solutions.ex7.runkMeans import runkMeans
 from solutions.ex7.plotDataPoints import plotDataPoints
-from solutions.displayData import displayData
-from show import show
+from solutions.show import show
 
 ## ================== Part 1: Load Example Dataset  ===================
 #  We start this exercise by using a small dataset that is easily to
@@ -120,6 +118,53 @@ input('Program paused. Press Enter to continue...')
 #  We start the exercise by first loading and visualizing the dataset.
 #  The following code will load the dataset into your environment
 #
+
+def displayData(X):
+    """displays 2D data
+      stored in X in a nice grid. It returns the figure handle h and the
+      displayed array if requested."""
+
+    # Compute rows, cols
+    m, n = X.shape
+    example_width = int(round(np.sqrt(n)))
+    example_height = int(n / example_width)
+
+    # Compute number of items to display
+    display_rows = np.floor(np.sqrt(m))
+    display_cols = np.ceil(m / display_rows)
+
+    # Between images padding
+    pad = 1
+    h = (int(pad + display_rows * (example_height + pad)))
+    w = (int(pad + display_cols * (example_width + pad)))
+    # Setup blank display
+    display_array = - np.ones([h, w])
+
+    # Copy each example into a patch on the display array
+    curr_ex = 0
+    for j in np.arange(display_rows):
+        for i in np.arange(display_cols):
+            if curr_ex > m:
+                break
+            # Get the max value of the patch
+            max_val = np.max(np.abs(X[curr_ex, : ]))
+            rows = np.array([pad + j * (example_height + pad) + x for x in np.arange(example_height+1)]).astype('int')
+            cols = np.array([pad + i * (example_width + pad)  + x for x in np.arange(example_width+1)]).astype('int')
+            #             X[curr_ex, :].reshape(example_height, example_width) / max_val
+            display_array[min(rows):max(rows), min(cols):max(cols)]
+            display_array[min(rows):max(rows), min(cols):max(cols)] = X[curr_ex, :].reshape(example_height, example_width) / max_val
+            curr_ex = curr_ex + 1
+        if curr_ex > m:
+            break
+
+        # Display Image
+    display_array = display_array.astype('float32')
+    plt.imshow(display_array.T)
+    plt.set_cmap('gray')
+    # Do not show axis
+    plt.axis('off')
+#     show()
+
 print('Loading face dataset.')
 
 #  Load Face dataset
@@ -217,6 +262,7 @@ sel = np.floor(np.random.random(1000) * len(X)) + 1
 #  Visualize the data and centroid memberships in 3D
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
+sel = np.array(sel).astype('int')
 Xs = np.array([X[s] for s in sel])
 xs = Xs[:, 0]
 ys = Xs[:, 1]

@@ -1,13 +1,10 @@
 import numpy as np
-
+from numpy.linalg import svd
 
 def pca(X):
     """computes eigenvectors of the covariance matrix of X
       Returns the eigenvectors U, the eigenvalues (on diagonal) in S
     """
-
-    # Useful values
-    m, n = X.shape
 
     # You need to return the following variables correctly.
 
@@ -19,7 +16,9 @@ def pca(X):
     # Note: When computing the covariance matrix, remember to divide by m (the
     #       number of examples).
     #
+    m, n = X.shape
+    cov_mat = np.dot(X.T, X) / m
+    U, S, V = svd(cov_mat, compute_uv=True)
+    return U, np.diag(S), V
 
-
-# =========================================================================
-    return U, S, V
+    # =========================================================================

@@ -1,3 +1,5 @@
+import numpy as np
+
 def recoverData(Z, U, K):
     """
     recovers an approximation the
@@ -17,8 +19,6 @@ def recoverData(Z, U, K):
     #
     #               Notice that U(j, 1:K) is a row vector.
     #
-
-
     # =============================================================
-
+    X_rec = np.dot(Z, U[:, 0:K].T)
     return X_rec

@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
-from plotDataPoints import plotDataPoints
-from show import show
+from solutions.ex7.plotDataPoints import plotDataPoints
+from solutions.show import show
 
 def plotProgresskMeans(X, centroids, previous, idx, K, i, color):
     """plots the data

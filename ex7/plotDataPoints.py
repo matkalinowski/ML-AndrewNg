@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-from show import show
+from solutions.show import show
 
 def plotDataPoints(X, idx):
 

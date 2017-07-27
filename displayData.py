@@ -3,7 +3,7 @@ from matplotlib import use
 use('TkAgg')
 import matplotlib.pyplot as plt
 
-from show import show
+from solutions.show import show
 
 def displayData(X):
     """displays 2D data
