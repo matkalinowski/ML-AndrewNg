@@ -18,8 +18,8 @@ srcs = [
   'findClosestCentroids.py',
   'computeCentroids.py',
   'pca.py',
-  # 'projectData.py',
-  # 'recoverData'
+  'projectData.py',
+  'recoverData'
   ]
 
 
