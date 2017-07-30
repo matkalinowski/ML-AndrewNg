@@ -1,6 +1,6 @@
 import numpy as np
-from ex4.computeNumericalGradient import computeNumericalGradient
-from cofiCostFunc import cofiCostFunc
+from solutions.ex8.computeNumericalGradient import computeNumericalGradient
+from solutions.ex8.cofiCostFunc import cofiCostFunc
 
 def checkCostFunction(Lambda=0):
     """Creates a collaborative filering problem
@@ -40,15 +40,14 @@ def checkCostFunction(Lambda=0):
 
     cost, grad = cofiCostFunc(params, Y, R, num_users, num_movies, num_features, Lambda)
 
+    print(np.column_stack((numgrad, grad)))
 
-    print np.column_stack((numgrad, grad))
-
-    print 'The above two columns you get should be very similar.\n' \
-             '(Left-Your Numerical Gradient, Right-Analytical Gradient)\n\n'
+    print('The above two columns you get should be very similar.\n'
+          '(Left-Your Numerical Gradient, Right-Analytical Gradient)\n\n')
 
     diff = np.linalg.norm(numgrad-grad)/np.linalg.norm(numgrad+grad)
 
-    print 'If your backpropagation implementation is correct, then\n ' \
-          'the relative difference will be small (less than 1e-9). \n' \
-          '\nRelative Difference: %g\n' % diff
+    print('If your backpropagation implementation is correct, then\n '
+          'the relative difference will be small (less than 1e-9). \n'
+          '\nRelative Difference: %g\n' % diff)
 
