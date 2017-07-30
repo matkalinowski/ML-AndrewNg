@@ -1,5 +1,7 @@
 import numpy as np
 
+def calc_err_factor(X, Theta, Y, R):
+    return (np.dot(X, Theta.T) - Y)* R
 
 def cofiCostFunc(params, Y, R, num_users, num_movies, num_features, Lambda):
     """returns the cost and gradient for the
@@ -39,6 +41,17 @@ def cofiCostFunc(params, Y, R, num_users, num_movies, num_features, Lambda):
 
 
     # =============================================================
+    cst = np.power(calc_err_factor(X, Theta, Y, R),2)
+    J = np.sum(cst) / 2
+    # =============================================================
+    lam = Lambda / 2
+    X_reg = np.sum(np.power(Theta, 2)) * lam
+    Theta_reg = np.sum(np.power(X, 2)) * lam
+
+    J = J + X_reg + Theta_reg
+
+    X_grad = np.dot(calc_err_factor(X, Theta, Y, R), Theta) + (Lambda * X)
+    Theta_grad = np.dot(calc_err_factor(X, Theta, Y, R).T, X) + (Lambda * Theta)
 
     grad = np.hstack((X_grad.T.flatten(),Theta_grad.T.flatten()))
 
