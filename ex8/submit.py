@@ -1,7 +1,8 @@
 import numpy as np
+import importlib
 
-from Submission import Submission
-from Submission import sprintf
+from solutions.Submission import Submission
+from solutions.Submission import sprintf
 
 homework = 'anomaly-detection-and-recommender-systems'
 
@@ -38,7 +39,7 @@ def output(part_id):
     params = np.hstack((X.T.flatten(), Theta.T.flatten()))
 
     fname = srcs[part_id-1].rsplit('.',1)[0]
-    mod = __import__(fname, fromlist=[fname], level=1)
+    mod = importlib.import_module(fname)
     func = getattr(mod, fname)
 
     if part_id == 1:
@@ -66,4 +67,4 @@ try:
 except Exception as ex:
     template = "An exception of type {0} occured. Messsage:\n{1!r}"
     message = template.format(type(ex).__name__, ex.args)
-    print message
+    print(message)
