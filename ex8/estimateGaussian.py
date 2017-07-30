@@ -17,11 +17,13 @@ def estimateGaussian(X):
     #               the data for the i-th feature and sigma2(i)
     #               should contain variance of the i-th feature.
     #
-
-
-
 # =============================================================
-
-    return mu, sigma2
+    mu = []
+    sigma2 = []
+    for col_num in range(0, X.shape[1]):
+        feature_col = X[:, col_num]
+        mu.append(feature_col.mean())
+        sigma2.append(np.var(feature_col))
+    return np.array(mu), np.array(sigma2)
 
 

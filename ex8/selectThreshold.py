@@ -1,5 +1,5 @@
 import numpy as np
-import math
+from sklearn.metrics import f1_score
 
 def selectThreshold(yval, pval):
     """
@@ -24,7 +24,8 @@ def selectThreshold(yval, pval):
         # Note: You can use predictions = (pval < epsilon) to get a binary vector
         #       of 0's and 1's of the outlier predictions
 
-
+        pred = (pval < epsilon).astype('int')
+        F1 = f1_score(yval, pred)
         # =============================================================
 
         if F1 > bestF1:

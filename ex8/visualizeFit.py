@@ -1,9 +1,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from math import isinf
-from multivariateGaussian import multivariateGaussian
+from solutions.ex8.multivariateGaussian import multivariateGaussian
 
-from show import show
+from solutions.show import show
 
 
 def visualizeFit(X, mu, sigma2):
